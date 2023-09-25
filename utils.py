@@ -77,10 +77,13 @@ def draw(surface, rect: Rect):
     pygame.draw.rect(surface, rect.color, (rect.x, rect.y, rect.width, rect.height))
 
 
-def draw_score(surface, snake):
+def draw_score(surface, game):
     font = pygame.font.Font(None, 36)
-    score_text = font.render(f"Score: {len(snake.body)}", True, (0, 0, 255))
+    score_text = font.render(f"Score: {len(game.snake.body)}", True, (0, 0, 255))
     surface.blit(score_text, (10, 10))
+
+    highscore_text = font.render(f"Highscore: {game.highscore}", True, (0, 0, 255))
+    surface.blit(highscore_text, (200, 10))
 
 
 def draw_endgame_message(surface, score):

@@ -23,14 +23,14 @@ def check_collisions(snake: Snake, food_container: FoodContainer):
         if snake.head.x == element.x and snake.head.y == element.y:
             return CollisionState(eaten_yourself=True)
     to_eaten = []
-    for food in food_container.container:
+    for food in food_container:
         if (snake.head.x - 10 <= food.x <= snake.head.x + 10) and (
             snake.head.y - 10 <= food.y <= snake.head.y + 10
         ):
             to_eaten.append(food)
 
     food_container.container = [
-        x for x in food_container.container if x not in to_eaten
+        x for x in food_container if x not in to_eaten
     ]
     if to_eaten:
         return CollisionState(snake_eaten=True)
