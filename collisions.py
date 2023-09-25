@@ -8,8 +8,9 @@ class CollisionState:
         self.eaten_yourself = eaten_yourself
         self.snake_eaten = snake_eaten
 
-    def should_end_game(self):
-        return self.wall_hit or self.eaten_yourself
+    def should_end_game(self): return self.wall_hit or self.eaten_yourself
+    def __str__(self): return f"Wall: {self.wall_hit} Ey: {self.eaten_yourself} eaten: {self.snake_eaten}"
+
 
 def check_collisions(snake: Snake, food_container: FoodContainer):
     if snake.head.x > 800 or snake.head.x < 0:
