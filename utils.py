@@ -39,6 +39,7 @@ class Food(Rect):
 class FoodContainer:
     def __init__(self, initial=0):
         self.container: list[Food] = []
+        self.__index = 0
 
         for _ in range(initial):
             self.add()
@@ -46,6 +47,19 @@ class FoodContainer:
     def add(self):
         x, y = random.randint(10, 790), random.randint(10, 590)
         self.container.append(Food(x, y))
+
+    def __iter__(self):
+        self.__index = 0
+        return self
+
+    def __next__(self):
+        try:
+            item = self.container[self.__index]
+        except IndexError:
+            raise StopIteration
+
+        self.__index += 1
+        return item
 
 
 def draw_snake(surface, snake):
